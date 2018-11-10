@@ -11,6 +11,9 @@ LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
 CFLAGS+=$(CPPFLAGS)
 CXXFLAGS+=$(CPPFLAGS)
 
+# Build with C++11 enabled in order to fix https://github.com/PointCloudLibrary/pcl/issues/1870
+CXXFLAGS+=-std=c++11
+
 BUILD_DOC = $(if $(shell dh_listpackages | grep libpcl-doc),-DWITH_DOCS=ON)
 
 # Multiarch.
